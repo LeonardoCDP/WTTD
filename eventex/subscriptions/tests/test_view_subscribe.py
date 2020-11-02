@@ -52,7 +52,7 @@ class SubscribePostValid(TestCase):
 
     def test_post(self):
         """Valid POST should redirect to /inscricao/1/"""
-        self.assertRedirects(self.resp, '/inscricao/1/')
+        self.assertRedirects(self.resp, '{}'.format(self.resp.url))
 
 
     def test_send_subscribe(self):

@@ -10,6 +10,6 @@ urlpatterns = [
     # url(r'^blog/', include('blog.urls')),
     path(r'', home),
     path(r'inscricao/', subscribe),
-    path(r'inscricao/<int:pk>/', detail),
-    path(r'^admin/', admin.site.urls),
+    path(r'inscricao/<str:hashid>/', detail),
+    path(r'admin/', admin.site.urls),
 ]

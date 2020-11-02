@@ -10,7 +10,7 @@ class SubscriptionDetailGet(TestCase):
             email='teste@lcotta.com',
             phone='21-996186180'
         )
-        self.resp = self.client.get('/inscricao/{}/'.format(self.obj.pk))
+        self.resp = self.client.get('/inscricao/{}/'.format(self.obj.hashid))
 
 
     def test_get(self):

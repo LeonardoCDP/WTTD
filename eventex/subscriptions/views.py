@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core import mail
+from django.core.exceptions import ValidationError
 from django.http import HttpResponseRedirect, Http404
 from django.shortcuts import render
 from django.template.loader import render_to_string
@@ -31,17 +32,17 @@ def create(request):
                'subscriptions/subscription_email.txt',
                {'subscription': subscription})
 
-    return HttpResponseRedirect('/inscricao/{}/'.format(subscription.pk))
+    return HttpResponseRedirect('/inscricao/{}/'.format(subscription.hashid))
 
 
 def new(request):
     return render(request, 'subscriptions/subscription_form.html', {'form': SubscriptionForm()})
 
 
-def detail(request, pk):
+def detail(request, hashid):
     try:
-        subscription = Subscription.objects.get(pk=pk)
-    except Subscription.DoesNotExist:
+        subscription = Subscription.objects.get(hashid=hashid)
+    except (Subscription.DoesNotExist, ValidationError):
         raise Http404
     return render(request, 'subscriptions/subscription_detail.html',
                   {'subscription': subscription})
