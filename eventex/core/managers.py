@@ -17,3 +17,4 @@ class PeriodManager(models.Manager):
 
     def at_afternoon(self):
         return self.filter(start__gte=self.MIDDAY)
+
